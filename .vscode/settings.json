@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Night Owl",
+    "workbench.preferredDarkColorTheme": "Tomorrow Night Blue",
+    "workbench.preferredLightColorTheme": "Red",
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true
+}

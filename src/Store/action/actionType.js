@@ -1,0 +1,5 @@
+export const ADD_BASKET = 'ADD_BASKET';
+export const REMOVE_BASKET = 'REMOVE_BASKET';
+
+export const GET_PRODUCTS = 'GET_PRODUCTS'
+export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID'

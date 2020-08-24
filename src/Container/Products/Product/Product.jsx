@@ -1,37 +1,35 @@
-import React, {Component} from 'react'
+import React, {useEffect} from 'react'
 import classes from './Product.module.css'
-import * as actionType from '../../../Store/action'
+import * as actionType from '../../../Store/action/actionType'
 import { connect } from 'react-redux'
+import * as actions from '../../../Store/action/index'
 
-class Product extends Component{
+const  Product = props =>  {
 
+    let rating = null;
+    rating = Array(props.rating)
+    .fill()
+    .map((_) => {            
+        return(<p key={'_' + Math.random().toString(36).substr(2, 9)} >&#9733;</p>)            
+    })
 
-
-    render(){
-        let rating = null;
-        rating = Array(this.props.rating)
-        .fill()
-        .map((_) => {            
-            return(<p key={'_' + Math.random().toString(36).substr(2, 9)} >&#9733;</p>)            
-        })
-
-        
-        return(
-            <div className={classes.Product}>
-                <span>{this.props.title}</span>
-                <span>{this.props.name}</span>
-                <img src={this.props.src} alt=''/>
-                <span className={classes.Rating}>{rating}</span>
-                <span>${this.props.price}</span>
-                <button onClick={() => this.props.onCartAdd(this.props.productId)}>Add to cart</button>
-            </div>
-        )
-    }
+    
+    return(
+        <div className={classes.Product}>
+            <span>{props.title}</span>
+            <span>{props.name}</span>
+            <img src={props.src} alt=''/>
+            <span className={classes.Rating}>{rating}</span>
+            <span>${props.price}</span>
+            <button onClick={() => props.onCartAdd(props.productId)}>Add to cart</button>
+        </div>
+    )
 }
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onCartAdd: (productId) => dispatch({type:actionType.ADD_BASKET, productId: productId})
+        onCartAdd: (productId) => dispatch(actions.addBasket(productId) )
     }
 }
 

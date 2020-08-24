@@ -5,10 +5,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router} from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { createStore} from 'redux'
-import reducer from './Store/reducer'
+import { createStore, combineReducers} from 'redux'
+import basketReducer from './Store/reducer/busketReducer'
+import productReducer from './Store/reducer/products'
 
-const store = createStore(reducer)
+const rootReducer = combineReducers({
+  products: productReducer,
+  basket: basketReducer
+})
+
+const store = createStore(rootReducer)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

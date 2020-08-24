@@ -1,4 +1,4 @@
-import * as actionType from './action'
+import * as actionType from '../action/actionType';
 
 const initialize = {
     cart : 0,

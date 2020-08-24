@@ -1,54 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Product from './Product/Product'
-import IpadImg from '../../asset/img/ipad.jpg'
 import classes from './Products.module.css'
+import {connect} from 'react-redux'
 
-class Products extends Component{
-    state = {
-        productInfo: [
-            {
-                id: 1,
-                title: 'This is title',
-                name: 'IPAD',
-                image: IpadImg,
-                rating: 5,
-                price: 100
-            },
-            {
-                id: 2,
-                title: 'This is title',
-                name: 'name',
-                image: IpadImg,
-                rating: 5,
-                price: 900
-            }
-        ] 
-    }
-    
-    
+const Products = props =>{
 
-    render(){
-        let products = null;
 
-        products = this.state.productInfo.map( (item, i) => {
-            
-            return <Product 
-            key={item.id}
-            title={item.title} 
-            name={item.name} 
-            src={item.image} 
-            rating={item.rating} 
-            price={item.price}
-            productId={item.id}/>
-            
-        });
+    let products = null;
+
+    products = props.productInfo.map( (item, i) => {
         
-        return(
-            <div className={classes.Products}>
-                {products}
-            </div>
-        )
+        return <Product 
+        key={item.id}
+        title={item.title} 
+        name={item.name} 
+        src={item.image} 
+        rating={item.rating} 
+        price={item.price}
+        productId={item.id}/>
+        
+    });
+    
+    return(
+        <div className={classes.Products}>
+            {products}
+        </div>
+    )
+}
+
+const mapStateToProps = (state) => {
+    return{
+        productInfo: state.products.products
     }
 }
 
-export default Products
+
+export default connect(mapStateToProps) (Products)

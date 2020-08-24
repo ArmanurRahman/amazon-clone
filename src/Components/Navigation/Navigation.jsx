@@ -31,7 +31,7 @@ const navigation = (props) => {
 
 const mapStateToProps = (state) => {
     return{
-        cart: state.cart
+        cart: state.basket.cart
     }
 }
 export default connect(mapStateToProps) (navigation)
