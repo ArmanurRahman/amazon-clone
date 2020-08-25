@@ -3,18 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router} from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { createStore, combineReducers} from 'redux'
-import basketReducer from './Store/reducer/busketReducer'
-import productReducer from './Store/reducer/products'
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import basketReducer from './Store/reducer/busketReducer';
+import productReducer from './Store/reducer/products';
+import thunk from 'redux-thunk';
 
+const composeEnhancers =
+  process.env.NODE_ENV === 'development'
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
 const rootReducer = combineReducers({
   products: productReducer,
-  basket: basketReducer
-})
+  basket: basketReducer,
+});
 
-const store = createStore(rootReducer)
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
